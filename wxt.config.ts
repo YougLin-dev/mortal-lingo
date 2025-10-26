@@ -8,7 +8,7 @@ export default defineConfig({
     description: "__MSG_extension_description__",
     host_permissions: [],
     name: "__MSG_extension_name__",
-    permissions: [],
+    permissions: ["storage"],
   },
   modules: [
     "@wxt-dev/module-react",

@@ -1,21 +1,26 @@
 // use background
 import { os } from "@orpc/server";
-import { z } from "zod";
+import { type } from "arktype";
 import { itemHandlers } from "./handlers/item";
+import { settingsHandlers } from "./handlers/settings";
 import { userHandlers } from "./handlers/user";
 
 export const router = {
   hello: os.handler(async () => `${i18n.t("hello")} orpc`),
 
-  getUser: os.input(z.object({ id: z.string() })).handler(userHandlers.getUser),
+  getUser: os.input(type({ id: "string" })).handler(userHandlers.getUser),
 
   updateUser: os
-    .input(z.object({ id: z.string(), name: z.string() }))
+    .input(type({ id: "string", name: "string" }))
     .handler(userHandlers.updateUser),
 
-  deleteItem: os
-    .input(z.object({ id: z.string() }))
-    .handler(itemHandlers.deleteItem),
+  deleteItem: os.input(type({ id: "string" })).handler(itemHandlers.deleteItem),
+
+  getSettings: os.handler(settingsHandlers.getSettings),
+
+  updateSettings: os
+    .input(type({ isTranslationActive: "boolean | undefined" }))
+    .handler(settingsHandlers.updateSettings),
 };
 
 export type AppRouter = typeof router;
