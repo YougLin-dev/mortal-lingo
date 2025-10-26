@@ -1,0 +1,14 @@
+{
+  "extends": "./.wxt/tsconfig.json",
+  "compilerOptions": {
+    "allowImportingTsExtensions": true,
+    "jsx": "react-jsx",
+    "paths": {
+      "@/*": ["./*"],
+      "~/*": ["./*"],
+      "#i18n": ["./.wxt/i18n/index.ts"],
+      "#i18n/*": ["./.wxt/i18n/index.ts/*"]
+    },
+    "strictNullChecks": true
+  }
+}
